@@ -9,7 +9,7 @@
         fps: false,
         best: 0,
 
-        atlas: new Ω.SpriteAtlas("csv", "res/flappyAtlas/atlas"),
+        atlas: new Ω.SpriteAtlas("csv", "https://raw.githubusercontent.com/SarvagyaVaish/FlappyBirdRL/master/res/flappyAtlas/atlas"),
 
         init: function (w, h) {
 

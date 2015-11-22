@@ -23,7 +23,7 @@
 		flash: null,
 
 
-		
+
 		m_state: {"vertical_distance": 0, "horizontal_distance": 0},
 		m_state_dash: {"vertical_distance": 0, "horizontal_distance": 0},
 		explore: 0.00,
@@ -34,8 +34,8 @@
 		horizontal_dist_range: [0, 180],
 
 
-		min_diff: 9999, 
-		max_diff: -9999, 
+		min_diff: 9999,
+		max_diff: -9999,
 
 		init: function () {
 			this.reset();
@@ -94,7 +94,7 @@
 
 			var valid = false;
 			var reward = 0;
-					
+
 			switch (this.state.get()) {
 				case "BORN":
 					this.state.set("RUNNING");
@@ -133,13 +133,20 @@
 					}
 
 					this.sounds.hit.play();
+
+
+					ScorePerLifeChartDPS.push({
+							x: iteration++,
+							y: this.score
+					});
+					updateChart();
 					
 					//console.log("Died at location: " + this.bird.y);
 					//for (var i = 80; i < 90; i++) {
 					//	console.log( "i: " + i + ", click: " + this.Q[i]["click"] + ", do_nothing: " +this.Q[i]["do_nothing"] );
 					//}
 
-					// Print debug stuff 
+					// Print debug stuff
 					//this.printState();
 
 					this.reset();
@@ -181,7 +188,7 @@
 				this.m_state_dash.vertical_distance = vertical_distance;
 				this.m_state_dash.horizontal_distance = horizontal_distance;
 
-				
+
 				//console.log("Vertical: \t" + vertical_distance);
 				//console.log("Horizontal:\t" + horizontal_distance);
 				//console.log("--");
@@ -193,43 +200,43 @@
 
 
 				// Step 3: Update Q(S, A)
-				var state_bin_v = 
-				Math.max( 
-					Math.min ( 
-						Math.floor((this.vertical_dist_range[1]-this.vertical_dist_range[0]-1)/this.resolution), 
+				var state_bin_v =
+				Math.max(
+					Math.min (
+						Math.floor((this.vertical_dist_range[1]-this.vertical_dist_range[0]-1)/this.resolution),
 						Math.floor( (this.m_state.vertical_distance - this.vertical_dist_range[0])/this.resolution )
-					), 
+					),
 					0
 				);
-				
-				var state_bin_h = 
-				Math.max( 
-					Math.min ( 
-						Math.floor((this.horizontal_dist_range[1]-this.horizontal_dist_range[0]-1)/this.resolution), 
+
+				var state_bin_h =
+				Math.max(
+					Math.min (
+						Math.floor((this.horizontal_dist_range[1]-this.horizontal_dist_range[0]-1)/this.resolution),
 						Math.floor( (this.m_state.horizontal_distance - this.horizontal_dist_range[0])/this.resolution )
-					), 
+					),
 					0
 				);
 
 
-				var state_dash_bin_v = 
-				Math.max( 
-					Math.min ( 
-						Math.floor((this.vertical_dist_range[1]-this.vertical_dist_range[0]-1)/this.resolution), 
+				var state_dash_bin_v =
+				Math.max(
+					Math.min (
+						Math.floor((this.vertical_dist_range[1]-this.vertical_dist_range[0]-1)/this.resolution),
 						Math.floor( (this.m_state_dash.vertical_distance - this.vertical_dist_range[0])/this.resolution )
-					), 
+					),
 					0
 				);
-				
-				var state_dash_bin_h = 
-				Math.max( 
-					Math.min ( 
-						Math.floor((this.horizontal_dist_range[1]-this.horizontal_dist_range[0]-1)/this.resolution), 
+
+				var state_dash_bin_h =
+				Math.max(
+					Math.min (
+						Math.floor((this.horizontal_dist_range[1]-this.horizontal_dist_range[0]-1)/this.resolution),
 						Math.floor( (this.m_state_dash.horizontal_distance - this.horizontal_dist_range[0])/this.resolution )
-					), 
+					),
 					0
 				);
-				
+
 
 				//console.log("S: V - " + state_bin_v + ", H - " + state_bin_h);
 				//console.log("S' V - " + state_dash_bin_v + ", H - " + state_dash_bin_h);
@@ -241,7 +248,7 @@
 				var V_s_dash_a_dash = Math.max(click_v, do_nothing_v);
 
 				var Q_s_a = this.Q[state_bin_v][state_bin_h][this.action_to_perform];
-				this.Q[state_bin_v][state_bin_h][this.action_to_perform] = 
+				this.Q[state_bin_v][state_bin_h][this.action_to_perform] =
 					Q_s_a + this.alpha_QL * (reward + V_s_dash_a_dash - Q_s_a);
 
 
@@ -260,21 +267,21 @@
 					this.action_to_perform = Ω.utils.rand(2) == 0 ? "click" : "do_nothing";
 				}
 				else {
-					var state_bin_v = 
-					Math.max( 
-						Math.min ( 
-							Math.floor((this.vertical_dist_range[1]-this.vertical_dist_range[0]-1)/this.resolution), 
+					var state_bin_v =
+					Math.max(
+						Math.min (
+							Math.floor((this.vertical_dist_range[1]-this.vertical_dist_range[0]-1)/this.resolution),
 							Math.floor( (this.m_state.vertical_distance - this.vertical_dist_range[0])/this.resolution )
-						), 
+						),
 						0
 					);
-					
-					var state_bin_h = 
-					Math.max( 
-						Math.min ( 
-							Math.floor((this.horizontal_dist_range[1]-this.horizontal_dist_range[0]-1)/this.resolution), 
+
+					var state_bin_h =
+					Math.max(
+						Math.min (
+							Math.floor((this.horizontal_dist_range[1]-this.horizontal_dist_range[0]-1)/this.resolution),
 							Math.floor( (this.m_state.horizontal_distance - this.horizontal_dist_range[0])/this.resolution )
-						), 
+						),
 						0
 					);
 
@@ -310,10 +317,10 @@
 
 			// Vertical Distance
 			for (var vert_dist = 0; vert_dist < (this.vertical_dist_range[1] - this.vertical_dist_range[0])/this.resolution; vert_dist++) {
-				
+
 				// Horizontal Distance
 				for (var hori_dist = 0; hori_dist < (this.horizontal_dist_range[1] - this.horizontal_dist_range[0])/this.resolution; hori_dist++) {
-				
+
 					var debug_char = this.Q[vert_dist][hori_dist]["click"] > this.Q[vert_dist][hori_dist]["do_nothing"] ? 'c' : '-';
 					//$("#debug").append(debug_char);
 					debug_string = debug_string + debug_char;

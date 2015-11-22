@@ -6,16 +6,28 @@
     <meta name="viewport" content="user-scalable=0, initial-scale=1.0" />
 
     <title>Ω500 - flappy bird</title>
-    
+
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/canvasjs/canvasjs.min.js"></script>
+    <script type="text/javascript" src="scripts/FlappyBirdGraphing.js"></script>
 
     <link rel="stylesheet" href="res/main.css">
 </head>
 <body>
-    <section>
-        <canvas id="board"></canvas>
-    </section>
+  <div id="row1">
+    <div id="column1">
+      <div id="chartScorePerLifeContainer" style="height: 300px; width: 25%; margin: auto;">  </div>
+    </div>
+    <div id="column2">
+      <section>
+          <canvas id="board" class="flappy"></canvas>
+      </section>
+    </div>
+  </div>
 
+    <script>
+      var iteration = 0;
+    </script>
     <!-- Ω500 lib -->
     <script src="build/Ω500.js"></script>
 
@@ -30,7 +42,7 @@
     </script>
 
     <hr />
-    
+
     <div id="debug" style="text-align: left">
     </div>
 

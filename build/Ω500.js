@@ -3779,7 +3779,7 @@ window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequ
 
 			var self = this,
 				now = Date.now(),
-				frameTime = 1,
+				frameTime = (gamespeed == 1) ? 1 : Math.min((now - this.currentTime) / 1000, this.preset_dt),
 				c;
 
 			this.currentTime = now;

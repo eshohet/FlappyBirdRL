@@ -249,7 +249,7 @@
 
 				var Q_s_a = this.Q[state_bin_v][state_bin_h][this.action_to_perform];
 				this.Q[state_bin_v][state_bin_h][this.action_to_perform] =
-					Q_s_a + window.alpha_QL * (reward + V_s_dash_a_dash - Q_s_a);
+					Q_s_a + window.alpha_QL * (reward + window.gamma * V_s_dash_a_dash - Q_s_a);
 
 
 				//for (var i = 90; i < 95; i++) {

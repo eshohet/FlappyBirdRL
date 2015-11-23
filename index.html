@@ -16,17 +16,24 @@
 <body>
   <div id="row1">
     <div id="column1">
-      <div id="chartScorePerLifeContainer" style="height: 300px; width: 25%; margin: auto;">  </div>
+      <div id="chartScorePerLifeContainer" style="height: 300px; width: 25%; margin: auto;"></div>
+
     </div>
     <div id="column2">
       <section>
           <canvas id="board" class="flappy"></canvas>
       </section>
     </div>
+    <div id="column3">
+      <div><input type="button" value="Speed Switch" onclick="javscript: gamespeed = gamespeed? 0 : 1;"> </input></div>
+    </div>
   </div>
 
     <script>
       var iteration = 0;
+    </script>
+    <script>
+    var gamespeed = 1;
     </script>
     <!-- Ω500 lib -->
     <script src="build/Ω500.js"></script>

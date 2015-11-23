@@ -26,6 +26,10 @@
     </div>
     <div id="column3">
       <div><input type="button" value="Speed Switch" onclick="javscript: gamespeed = gamespeed? 0 : 1;"> </input></div>
+      <div> Alpha/Learning Rate: <input type="text" value=".75" onchange="window.alpha_QL = Number(this.value);"></input></div>
+      <div> Resolution: <input type="text" value="4" onchange="window.res = Number(this.value);"></input></div>
+      <div> Exploration Factor: <input type="text" value="0" onchange ="window.explore = Number(this.value);"></input></div>
+
     </div>
   </div>
 

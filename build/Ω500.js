@@ -1048,8 +1048,8 @@ window.requestAnimationFrame = window.requestAnimationFrame || window.webkitRequ
 			icade = icade || Ω.urlParams.icade;
 
 			bindKeys(!icade ? keyed : keyedIcade);
-			bindMouse();
-			bindTouch();
+			//bindMouse();
+			//bindTouch();
 
 		},
 
